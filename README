@@ -1,13 +1,13 @@
 Design Overview:
-    When shell is started, signals are blocked for the shell, but are enabled through child processes. We employ the fork-exec-wait model as the main algorithm for the
+    When shell is started, signals are blocked for the shell, but are enabled through child processes. I employ the fork-exec-wait model as the main algorithm for the
     shell. The shell can handle pipes, redirection, path, and has a simple bash interpreter for bash scripts. The shell also features built in commands, such as exit,
     cd, and myHistory which will show the last 20 commands. You can pick whether you want a interactive mode or a batch mode through command line argument when running
     the shell. The shell can run multiple commands exasperated by semicolon as well.
     
-    THe shell first checks that the command line argument is a valid. The argument (filename) is passed and enters into batch mode, otherwise, if no argument is present, the shell goes to interactive mode. The second part
+    The shell first checks that the command line argument is a valid. The argument (filename) is passed and enters into batch mode, otherwise, if no argument is present, the shell goes to interactive mode. The second part
     of the shell is declarations for most of the variables. The shell is wrapped by an infinite loop that will exit only when the exit command is used by the user. Inside the 
-    infinite loop, we group the processes for background, and ignore all signals. Next, we obtain the current working directory as our shell prompt, similar to a real shell. Then,
-    we get the user's input and parse it using regex and strtok. We then keep track of the commands for myHistory (up to 20 commands). Regex is used for bash2 and pipe. Then the shell handles redirection. After
+    infinite loop, I group the processes for background, and ignore all signals. Next, I obtain the current working directory as our shell prompt, similar to a real shell. Then,
+    I get the user's input and parse it using regex and strtok. I then keep track of the commands for myHistory (up to 20 commands). Regex is used for bash2 and pipe. Then the shell handles redirection. After
     that the shell will handle built in commands: exit, cd, and path. After path and redirection is handled the fork-exec-wait model is used to execute the command.
     
     The shell uses similar algorithm as the one described for interactive mode but for batch mode. The only difference is that the shell will exit once all commands are executed, compared to how interactive mode is 
