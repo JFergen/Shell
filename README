@@ -1,0 +1,41 @@
+    Organization:
+    Joseph Fergen: Interactive Mode, cd command, pipelining, README
+    Aaron Shehan: myhistory command, bash2, Batch Mode, Regex
+    Het Patel: exit command, signal-handling, Interactive Mode, makefile, README
+    Adil Afroze: path command, redirection
+
+Extra Functionality (extra credit):
+    - Shows current working directory for prompt (changes when using 'cd' command) with color
+
+Design Overview:
+    When shell is started, signals are blocked for the shell, but are enabled through child processes. We employ the fork-exec-wait model as the main algorithm for the
+    shell. The shell can handle pipes, redirection, path, and has a simple bash interpreter for bash scripts. The shell also features built in commands, such as exit,
+    cd, and myHistory which will show the last 20 commands. You can pick whether you want a interactive mode or a batch mode through command line argument when running
+    the shell. The shell can run multiple commands exasperated by semicolon as well.
+    
+    THe shell first checks that the command line argument is a valid. The argument (filename) is passed and enters into batch mode, otherwise, if no argument is present, the shell goes to interactive mode. The second part
+    of the shell is declarations for most of the variables. The shell is wrapped by an infinite loop that will exit only when the exit command is used by the user. Inside the 
+    infinite loop, we group the processes for background, and ignore all signals. Next, we obtain the current working directory as our shell prompt, similar to a real shell. Then,
+    we get the user's input and parse it using regex and strtok. We then keep track of the commands for myHistory (up to 20 commands). Regex is used for bash2 and pipe. Then the shell handles redirection. After
+    that the shell will handle built in commands: exit, cd, and path. After path and redirection is handled the fork-exec-wait model is used to execute the command.
+    
+    The shell uses similar algorithm as the one described for interactive mode but for batch mode. The only difference is that the shell will exit once all commands are executed, compared to how interactive mode is 
+    handled.
+    
+Complete Specification:
+   If ambiguous results are given such as: ;;;  ;;; ;; ; the shell will not execute this because of our regex functions. It will simply make the user re-prompt.
+   Also if incorrect commands are given, the shell will display the incorrect command and a message, then prompt the user. 
+
+Instructions to complie and run:
+    1. To compile:
+       make
+    
+    2. For Interative mode:
+       ./newshell
+    
+    3. For Batch mode:
+       ./newshell [batch mode file name]
+       Example: ./newshell batch1
+    
+    4. To clean all files:
+       make clean
