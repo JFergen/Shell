@@ -1,12 +1,3 @@
-    Organization:
-    Joseph Fergen: Interactive Mode, cd command, pipelining, README
-    Aaron Shehan: myhistory command, bash2, Batch Mode, Regex
-    Het Patel: exit command, signal-handling, Interactive Mode, makefile, README
-    Adil Afroze: path command, redirection
-
-Extra Functionality (extra credit):
-    - Shows current working directory for prompt (changes when using 'cd' command) with color
-
 Design Overview:
     When shell is started, signals are blocked for the shell, but are enabled through child processes. We employ the fork-exec-wait model as the main algorithm for the
     shell. The shell can handle pipes, redirection, path, and has a simple bash interpreter for bash scripts. The shell also features built in commands, such as exit,
