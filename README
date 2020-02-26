@@ -17,11 +17,11 @@ Complete Specification:
    If ambiguous results are given such as: ;;;  ;;; ;; ; the shell will not execute this because of our regex functions. It will simply make the user re-prompt.
    Also if incorrect commands are given, the shell will display the incorrect command and a message, then prompt the user. 
 
-Instructions to complie and run:
+Instructions to compile and run:
     1. To compile:
        make
     
-    2. For Interative mode:
+    2. For Interactive mode:
        ./newshell
     
     3. For Batch mode:
